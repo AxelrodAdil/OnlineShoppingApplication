@@ -1,5 +1,7 @@
 package kz.axelrod.cryptofun.presentation.features.home
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import kz.axelrod.cryptofun.domain.network.Response
@@ -17,6 +19,9 @@ class HomeViewModel(
     init {
         getProducts()
     }
+
+    private val _orderResult = MutableLiveData<String>()
+    val orderResult: LiveData<String> get() = _orderResult
 
     override fun createInitialState(): HomeContract.State =
         HomeContract.State(
@@ -53,9 +58,9 @@ class HomeViewModel(
                 symbol, side, type, timeInForce, quantity, price, recvWindow, timestamp, signature
             )
             if (result is Response.Success) {
-                println(result.data)
+                _orderResult.postValue(result.data)
             } else if (result is Response.Error) {
-                println(result.error)
+                _orderResult.postValue(result.error.toString())
             }
         }
     }

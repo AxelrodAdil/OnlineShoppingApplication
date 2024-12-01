@@ -66,6 +66,7 @@ dependencies {
 
     // Navigation
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.runtime.livedata)
 
     // Testing
     testImplementation(libs.junit)
