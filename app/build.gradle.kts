@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "kz.axelrod.cryptofun"
+    namespace = "kz.axelrod.shop"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "kz.axelrod.cryptofun"
+        applicationId = "kz.axelrod.shop"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
