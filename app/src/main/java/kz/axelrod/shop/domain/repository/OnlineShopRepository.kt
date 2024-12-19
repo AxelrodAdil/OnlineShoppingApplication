@@ -5,7 +5,7 @@ import kz.axelrod.shop.domain.network.Response
 
 interface OnlineShopRepository {
 
-    suspend fun getCharacters(): Response<List<ProductItem>>
+    suspend fun getProductList(): Response<List<ProductItem>>
 
     suspend fun handleOrderTest(
         symbol: String,

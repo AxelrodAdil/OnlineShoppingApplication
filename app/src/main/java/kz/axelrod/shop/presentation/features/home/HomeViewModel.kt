@@ -7,12 +7,12 @@ import kotlinx.coroutines.launch
 import kz.axelrod.shop.domain.network.Response
 import kz.axelrod.shop.domain.network.toResourceUiState
 import kz.axelrod.shop.domain.repository.OnlineShopRepository
-import kz.axelrod.shop.domain.use_case.GetCharactersUseCase
+import kz.axelrod.shop.domain.use_case.GetProductListUseCase
 import kz.axelrod.shop.presentation.model.ResourceUiState
 import kz.axelrod.shop.presentation.mvi.BaseViewModel
 
 class HomeViewModel(
-    private val getCharactersUseCase: GetCharactersUseCase,
+    private val getProductListUseCase: GetProductListUseCase,
     private val repository: OnlineShopRepository
 ) : BaseViewModel<HomeContract.State, HomeContract.Event, HomeContract.Effect>() {
 
@@ -33,7 +33,7 @@ class HomeViewModel(
     private fun getProducts() {
         setState { copy(productList = ResourceUiState.Loading) }
         viewModelScope.launch {
-            val result = getCharactersUseCase()
+            val result = getProductListUseCase()
             setState {
                 copy(
                     productList = result.toResourceUiState()

@@ -11,7 +11,7 @@ import kz.axelrod.shop.presentation.features.sign_up.SignUpScreen
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.Home.route) {
+    NavHost(navController = navController, startDestination = Screen.SignIn.route) {
         composable(Screen.SignIn.route) {
             SignInScreen(navController = navController)
         }

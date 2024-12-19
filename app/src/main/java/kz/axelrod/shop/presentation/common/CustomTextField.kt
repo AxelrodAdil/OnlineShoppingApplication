@@ -3,8 +3,10 @@ package kz.axelrod.shop.presentation.common
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -33,6 +35,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import kz.axelrod.shop.presentation.model.TextFieldUiState
+import kz.axelrod.shop.ui.theme.Paddings
 import kz.axelrod.shop.ui.theme.black
 import kz.axelrod.shop.ui.theme.darkGreen
 import kz.axelrod.shop.ui.theme.greyColor
@@ -42,13 +45,33 @@ import kz.axelrod.shop.ui.theme.white
 import kz.axelrod.shop.utils.extension.noRippleClickable
 
 @Composable
-fun CityTextField(
-    textState: TextFieldUiState,
-    placeholder: String = "City name"
+fun PasswordField(
+    password: TextFieldUiState
 ) {
+    Text(text = "Password")
+    Spacer(modifier = Modifier.height(Paddings.small))
+    CustomPasswordTextField(password)
+}
+
+@Composable
+fun EmailField(
+    email: TextFieldUiState
+) {
+    Text(text = "Email")
+    Spacer(modifier = Modifier.height(Paddings.small))
+    CustomEmailTextField(email)
+}
+
+
+@Composable
+fun UserField(
+    name: TextFieldUiState
+) {
+    Text(text = "Name")
+    Spacer(modifier = Modifier.height(Paddings.small))
     CustomTextField(
-        textState = textState,
-        placeholder = placeholder,
+        textState = name,
+        placeholder = "Name",
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Email,
             autoCorrect = false
