@@ -12,7 +12,7 @@ val viewModelModule = module {
     viewModelOf(::SignUpViewModel)
     viewModel {
         HomeViewModel(
-            getCharactersUseCase = get(),
+            getProductListUseCase = get(),
             repository = get()
         )
     }
