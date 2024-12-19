@@ -10,7 +10,7 @@ import retrofit2.http.Query
 
 interface OnlineCryptoStoreService {
 
-    @GET("fbf3d361-b49f-49f9-aa25-0aa79fd1cd90")
+    @GET("6719602b-11ae-43ae-bc30-78cd1d930714")
     suspend fun getProductList(): CryptocurrencyListApiModel
 
     @GET("/depth")

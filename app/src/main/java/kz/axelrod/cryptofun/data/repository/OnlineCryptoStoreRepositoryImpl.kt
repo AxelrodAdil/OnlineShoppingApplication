@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kz.axelrod.cryptofun.data.api.OnlineCryptoStoreService
-import kz.axelrod.cryptofun.data.local.CryptocurrencyDao
+//import kz.axelrod.cryptofun.data.local.CryptocurrencyDao
 import kz.axelrod.cryptofun.data.mapper.CryptocurrencyItemsMapper
 import kz.axelrod.cryptofun.data.model.user.CryptocurrencyData
 import kz.axelrod.cryptofun.domain.model.characters.CryptocurrencyItem
@@ -14,7 +14,7 @@ import kz.axelrod.cryptofun.utils.extension.catchError
 
 class OnlineCryptoStoreRepositoryImpl(
     private val service: OnlineCryptoStoreService,
-    private val dao: CryptocurrencyDao,
+//    private val dao: CryptocurrencyDao,
     private val mapper: CryptocurrencyItemsMapper
 ) : OnlineCryptoStoreRepository {
 
@@ -52,28 +52,28 @@ class OnlineCryptoStoreRepositoryImpl(
         }
     }
 
-    suspend fun fetchAndSaveDepth(symbol: String) {
-        val depth = service.getDepth(symbol)
-        val avgPrice = service.getAvgPrice(symbol)
-        val bids = depth.getParsedBids()
-        val asks = depth.getParsedAsks()
+//    suspend fun fetchAndSaveDepth(symbol: String) {
+//        val depth = service.getDepth(symbol)
+//        val avgPrice = service.getAvgPrice(symbol)
+//        val bids = depth.getParsedBids()
+//        val asks = depth.getParsedAsks()
+//
+//        val bestBid = bids.maxByOrNull { it.price }
+//        val bestAsk = asks.minByOrNull { it.price }
+//        val data = CryptocurrencyData(
+//            id = depth.lastUpdateId,
+//            symbol = symbol,
+//            avgPrice = avgPrice.price.toDouble(),
+//            lastUpdateId = depth.lastUpdateId,
+//            bestBidPrice = bestBid?.price ?: 0.0,
+//            bestBidQuantity = bestBid?.quantity ?: 0.0,
+//            bestAskPrice = bestAsk?.price ?: 0.0,
+//            bestAskQuantity = bestAsk?.quantity ?: 0.0
+//        )
+//        dao.insertCryptocurrency(data)
+//    }
 
-        val bestBid = bids.maxByOrNull { it.price }
-        val bestAsk = asks.minByOrNull { it.price }
-        val data = CryptocurrencyData(
-            id = depth.lastUpdateId,
-            symbol = symbol,
-            avgPrice = avgPrice.price.toDouble(),
-            lastUpdateId = depth.lastUpdateId,
-            bestBidPrice = bestBid?.price ?: 0.0,
-            bestBidQuantity = bestBid?.quantity ?: 0.0,
-            bestAskPrice = bestAsk?.price ?: 0.0,
-            bestAskQuantity = bestAsk?.quantity ?: 0.0
-        )
-        dao.insertCryptocurrency(data)
-    }
-
-    fun getCryptocurrency(symbol: String): LiveData<CryptocurrencyData> {
-        return dao.getCryptocurrency(symbol)
-    }
+//    fun getCryptocurrency(symbol: String): LiveData<CryptocurrencyData> {
+//        return dao.getCryptocurrency(symbol)
+//    }
 }
