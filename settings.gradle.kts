@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "CryptoFun"
+rootProject.name = "Shop"
 include(":app")
  
