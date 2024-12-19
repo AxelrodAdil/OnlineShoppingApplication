@@ -18,10 +18,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
-import kz.axelrod.shop.presentation.common.CustomEmailTextField
-import kz.axelrod.shop.presentation.common.CustomPasswordTextField
 import kz.axelrod.shop.presentation.common.CustomYellowButton
+import kz.axelrod.shop.presentation.common.EmailField
 import kz.axelrod.shop.presentation.common.LoaderPopup
+import kz.axelrod.shop.presentation.common.PasswordField
 import kz.axelrod.shop.presentation.model.TextFieldUiState
 import kz.axelrod.shop.ui.theme.Paddings
 import kz.axelrod.shop.utils.Screen
@@ -132,22 +132,4 @@ private fun LoginFields(
     PasswordField(
         password = password
     )
-}
-
-@Composable
-private fun PasswordField(
-    password: TextFieldUiState
-) {
-    Text(text = "Password")
-    Spacer(modifier = Modifier.height(Paddings.small))
-    CustomPasswordTextField(password)
-}
-
-@Composable
-private fun EmailField(
-    email: TextFieldUiState
-) {
-    Text(text = "Email")
-    Spacer(modifier = Modifier.height(Paddings.small))
-    CustomEmailTextField(email)
 }
