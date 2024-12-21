@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -44,24 +43,7 @@ fun HomeScreen(
             .fillMaxSize()
             .padding(horizontal = Paddings.medium)
     ) {
-        Button(onClick = {
-            viewModel.placeTestOrder(
-                symbol = "XRPUSDT",
-                side = "BUY",
-                type = "LIMIT",
-                timeInForce = "GTC",
-                quantity = 1.0,
-                price = 1.88951271,
-                recvWindow = 5000L,
-                timestamp = System.currentTimeMillis(),
-                signature = "signature"
-            )
-        }) {
-            Text("Place Test Order")
-        }
-
         DisplayOrderResult(orderResult)
-
         ManagementResourceUiState(
             modifier = Modifier.padding(bottom = Paddings.medium),
             resourceUiState = state.productList,

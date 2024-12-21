@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import kz.axelrod.shop.presentation.features.catalog.CatalogScreen
 import kz.axelrod.shop.presentation.features.home.HomeScreen
 import kz.axelrod.shop.presentation.features.sign_in.SignInScreen
 import kz.axelrod.shop.presentation.features.sign_up.SignUpScreen
@@ -20,6 +21,9 @@ fun Navigation() {
         }
         composable(Screen.Home.route) {
             HomeScreen(navController = navController)
+        }
+        composable(Screen.Catalog.route) {
+            CatalogScreen(navController = navController)
         }
     }
 }
