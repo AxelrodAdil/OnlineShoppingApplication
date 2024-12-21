@@ -16,5 +16,6 @@ data class ProductDataDBModel(
     val description: String,
     val price: Double,
     val rating: Float,
+    val imageUrl: String?,
     val categoryId: Int
 )
