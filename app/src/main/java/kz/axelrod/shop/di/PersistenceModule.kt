@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import kz.axelrod.shop.data.local.AppDatabase
 import kz.axelrod.shop.data.local.AuthorizationDao
-import kz.axelrod.shop.data.local.ProductDao
 import kz.axelrod.shop.utils.Constants.LOCATION_DB
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -21,12 +20,7 @@ fun provideLocationDao(database: AppDatabase): AuthorizationDao {
     return database.onlineStoreDao()
 }
 
-fun provideProductDao(database: AppDatabase): ProductDao {
-    return database.productDao()
-}
-
 val persistenceModule = module {
     single { provideAppDatabase(androidContext()) }
     single { provideLocationDao(get()) }
-    single { provideProductDao(get()) }
 }

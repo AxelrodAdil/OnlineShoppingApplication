@@ -16,5 +16,4 @@ import kz.axelrod.shop.data.model.user.UserDBModel
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun onlineStoreDao(): AuthorizationDao
-    abstract fun productDao(): ProductDao
 }
