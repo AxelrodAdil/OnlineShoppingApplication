@@ -60,11 +60,18 @@ class SignUpViewModel(
     override fun handleEvent(event: SignUpContract.Event) {
         when (event) {
             SignUpContract.Event.OnSignUpClicked -> {
-                registerUser(
-                    name = state.name.input.value,
-                    email = state.email.input.value,
-                    password = state.password.input.value
-                )
+                viewModelScope.launch {
+                    val userExists = repository.checkUser(state.email.input.value)
+                    if (userExists) {
+                        setEffect { SignUpContract.Effect.OnUserExist }
+                    } else {
+                        registerUser(
+                            name = state.name.input.value,
+                            email = state.email.input.value,
+                            password = state.password.input.value
+                        )
+                    }
+                }
             }
         }
     }

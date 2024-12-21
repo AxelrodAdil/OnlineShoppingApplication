@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -38,7 +39,6 @@ fun SignInScreen(
     val context = LocalContext.current
 
     LoaderPopup(loadingPopup = loadingView)
-
     LaunchedEffect(Unit) {
         viewModel.effect.collect { effect ->
             when (effect) {
@@ -59,8 +59,6 @@ fun SignInScreen(
             }
         }
     }
-
-
     LoginContent(
         state = uiState,
         onLoginClicked = {
@@ -90,25 +88,29 @@ private fun LoginContent(
             email = state.email,
             password = state.password
         )
-        Spacer(modifier = Modifier.height(Paddings.standard12dp))
-        SignUpButton(
-            onSignUpClicked = onSignUpClicked
-        )
         Spacer(modifier = Modifier.height(Paddings.extraLarge))
         LoginButton(
             onLoginClicked = onLoginClicked, enabled = state.isButtonAvailable
+        )
+        Spacer(modifier = Modifier.height(Paddings.extraLarge))
+        SignUpButton(
+            onSignUpClicked = onSignUpClicked, enabled = state.isButtonAvailable
         )
     }
 }
 
 @Composable
-private fun SignUpButton(onSignUpClicked: () -> Unit) {
-    Text(
-        text = "Sign up",
-        modifier = Modifier
-            .wrapContentWidth()
-            .noRippleClickable { onSignUpClicked() }
-    )
+private fun SignUpButton(enabled: Boolean, onSignUpClicked: () -> Unit) {
+    CustomYellowButton(onClick = onSignUpClicked, enabled = enabled, content = {
+        Text(
+            text = "Don't have an account? Sign up",
+            modifier = Modifier
+                .wrapContentWidth()
+                .noRippleClickable { onSignUpClicked() }
+                .padding(top = Paddings.small),
+            color = MaterialTheme.colorScheme.primary,
+        )
+    })
 }
 
 @Composable
