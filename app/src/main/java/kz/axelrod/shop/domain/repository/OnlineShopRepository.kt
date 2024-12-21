@@ -6,16 +6,6 @@ import kz.axelrod.shop.domain.network.Response
 interface OnlineShopRepository {
 
     suspend fun getProductList(): Response<List<ProductItem>>
-
-    suspend fun handleOrderTest(
-        symbol: String,
-        side: String,
-        type: String,
-        timeInForce: String,
-        quantity: Double,
-        price: Double,
-        recvWindow: Long,
-        timestamp: Long,
-        signature: String
-    ): Response<String>
+    suspend fun getProducts(categoryId: Int? = null, searchQuery: String? = null): Response<List<ProductItem>>
+    suspend fun getProductDetails(productId: Int): Response<ProductItem>
 }

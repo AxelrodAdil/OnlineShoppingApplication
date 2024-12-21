@@ -2,11 +2,13 @@ package kz.axelrod.shop.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import kz.axelrod.shop.data.model.category.CategoryDBModel
 import kz.axelrod.shop.data.model.user.UserDBModel
 
 @Database(
     entities = [
         UserDBModel::class,
+        CategoryDBModel::class
     ],
     version = 1,
     exportSchema = false
@@ -14,4 +16,5 @@ import kz.axelrod.shop.data.model.user.UserDBModel
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun onlineStoreDao(): AuthorizationDao
+    abstract fun productDao(): ProductDao
 }

@@ -6,5 +6,7 @@ data class ProductItem(
     val description: String,
     val price: Double,
     val imageUrl: String,
-    val category: String
+    val category: String,
+    val rating: Float = 0f,
+    val reviews: List<String> = emptyList()
 )
