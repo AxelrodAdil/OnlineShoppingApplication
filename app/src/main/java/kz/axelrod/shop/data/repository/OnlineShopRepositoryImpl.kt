@@ -49,29 +49,4 @@ class OnlineShopRepositoryImpl(
             e.catchError()
         }
     }
-
-//    suspend fun fetchAndSaveDepth(symbol: String) {
-//        val depth = service.getDepth(symbol)
-//        val avgPrice = service.getAvgPrice(symbol)
-//        val bids = depth.getParsedBids()
-//        val asks = depth.getParsedAsks()
-//
-//        val bestBid = bids.maxByOrNull { it.price }
-//        val bestAsk = asks.minByOrNull { it.price }
-//        val data = ProductData(
-//            id = depth.lastUpdateId,
-//            symbol = symbol,
-//            avgPrice = avgPrice.price.toDouble(),
-//            lastUpdateId = depth.lastUpdateId,
-//            bestBidPrice = bestBid?.price ?: 0.0,
-//            bestBidQuantity = bestBid?.quantity ?: 0.0,
-//            bestAskPrice = bestAsk?.price ?: 0.0,
-//            bestAskQuantity = bestAsk?.quantity ?: 0.0
-//        )
-//        dao.insertProduct(data)
-//    }
-
-//    fun getProduct(symbol: String): LiveData<ProductData> {
-//        return dao.getProduct(symbol)
-//    }
 }

@@ -13,6 +13,7 @@ import kz.axelrod.shop.presentation.model.ResourceUiState
 import kz.axelrod.shop.presentation.model.TextFieldUiState
 import kz.axelrod.shop.presentation.model.ValidationResult
 import kz.axelrod.shop.presentation.mvi.BaseViewModel
+import kz.axelrod.shop.utils.UiText
 
 class SigInViewModel(
     private val validateEmail: ValidateEmail,
@@ -84,26 +85,33 @@ class SigInViewModel(
 
     private fun loginUser(email: String, password: String) {
         viewModelScope.launch {
-            setState {
-                copy(
-                    loginState = ResourceUiState.Loading
-                )
-            }
-            setEffect {
-                SigInContract.Effect.OnLoading
-            }
-            delay(2000)
+            try {
+                setState {
+                    copy(
+                        loginState = ResourceUiState.Loading
+                    )
+                }
+                setEffect {
+                    SigInContract.Effect.OnLoading
+                }
+                delay(2000)
 
-            val userId = repository.loginUser(
-                email,
-                password
-            )
-            setEffect {
-                if (userId != null) {
-                    createAuthToken(userId)
-                    return@setEffect SigInContract.Effect.OnUserFetched
-                } else {
-                    return@setEffect SigInContract.Effect.OnUserDoNotExist
+                val userId = repository.loginUser(
+                    email,
+                    password
+                )
+                setEffect {
+                    if (userId != null) {
+                        createAuthToken(userId)
+                        return@setEffect SigInContract.Effect.OnUserFetched
+                    } else {
+                        return@setEffect SigInContract.Effect.OnUserDoNotExist
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                setState {
+                    copy(loginState = ResourceUiState.Error(UiText.DynamicString("An unexpected error occurred")))
                 }
             }
         }

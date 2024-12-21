@@ -7,6 +7,7 @@ import kz.axelrod.shop.presentation.mvi.UiEvent
 import kz.axelrod.shop.presentation.mvi.UiState
 
 interface SigInContract {
+
     sealed interface Event : UiEvent {
         data object OnLoginClicked : Event
     }

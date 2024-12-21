@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -25,6 +27,7 @@ import kz.axelrod.shop.presentation.common.UserField
 import kz.axelrod.shop.presentation.model.TextFieldUiState
 import kz.axelrod.shop.ui.theme.Paddings
 import kz.axelrod.shop.utils.Screen
+import kz.axelrod.shop.utils.extension.noRippleClickable
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -65,6 +68,7 @@ fun SignUpScreen(
             viewModel.setEvent(SignUpContract.Event.OnSignUpClicked)
         },
         onSignUpClicked = {
+            navController.navigate(Screen.SignIn.route)
         }
     )
 }
@@ -92,6 +96,10 @@ private fun SignUpContent(
         SignUpButton(
             onLoginClicked = onLoginClicked, enabled = state.isButtonAvailable
         )
+        Spacer(modifier = Modifier.height(Paddings.extraLarge))
+        SignInButton(
+            onSignInClicked = onSignUpClicked, enabled = state.isButtonAvailable
+        )
     }
 }
 @Composable
@@ -112,11 +120,26 @@ private fun SignUpFields(
         password = password
     )
 }
+
 @Composable
 private fun SignUpButton(enabled: Boolean, onLoginClicked: () -> Unit) {
     CustomYellowButton(onClick = onLoginClicked, enabled = enabled, content = {
         Text(
             text = "Sign up",
+        )
+    })
+}
+
+@Composable
+private fun SignInButton(enabled: Boolean, onSignInClicked: () -> Unit) {
+    CustomYellowButton(onClick = onSignInClicked, enabled = enabled, content = {
+        Text(
+            text = "Already have an account? Sign in",
+            modifier = Modifier
+                .wrapContentWidth()
+                .noRippleClickable { onSignInClicked() }
+                .padding(top = Paddings.small),
+            color = MaterialTheme.colorScheme.primary,
         )
     })
 }
